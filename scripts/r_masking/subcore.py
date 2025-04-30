@@ -1,21 +1,17 @@
-import numpy as np
 import cv2
+import numpy as np
 from PIL import Image
-import torch
 
 import scripts.r_masking.core as core
 from reactor_utils import tensor_to_pil
 
 try:
     from ultralytics import YOLO
-    from ultralytics.nn.tasks import DetectionModel
 except Exception as e:
     print(e)
 
 
 def load_yolo(model_path: str):
-    torch.serialization.add_safe_globals([DetectionModel])
-    
     try:
         return YOLO(model_path)
     except ModuleNotFoundError:
