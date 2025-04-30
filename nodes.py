@@ -59,8 +59,6 @@ import scripts.r_masking.subcore as subcore
 import scripts.r_masking.core as core
 import scripts.r_masking.segs as masking_segs
 
-import scripts.reactor_sfw as sfw
-
 
 models_dir = folder_paths.models_dir
 REACTOR_MODELS_PATH = os.path.join(models_dir, "reactor")
@@ -356,8 +354,7 @@ class reactor:
                 logger.status("Interrupted by User")
                 break
             img.save(tmp_img)
-            if not sfw.nsfw_image(tmp_img, NSFWDET_MODEL_PATH):
-                pil_images_sfw.append(img)
+            pil_images_sfw.append(img)
         if os.path.exists(tmp_img):
             os.remove(tmp_img)
         pil_images = pil_images_sfw
