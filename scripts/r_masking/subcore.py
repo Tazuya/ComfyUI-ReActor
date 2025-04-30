@@ -1,12 +1,16 @@
 import numpy as np
 import cv2
 from PIL import Image
+import torch
+import torch.serialization
 
 import scripts.r_masking.core as core
 from reactor_utils import tensor_to_pil
 
 try:
     from ultralytics import YOLO
+    from ultralytics.nn.tasks import DetectionModel
+    torch.serialization.add_safe_globals([DetectionModel])
 except Exception as e:
     print(e)
 
